@@ -10,6 +10,28 @@ struct User {
     string password;
 };
 
+bool usernameExist(const vector<User> users, string username) {
+
+    for(User user : users){
+
+        if(user,username == username){
+            return true;
+        }
+    }
+    return false;
+}
+
+bool loginUser(const vector<User>& users, string username, string password) {
+    for (User user : users){
+
+        if(user.username == username &&
+            user.password == password) {
+                return true;
+            }
+    }
+    return false;
+}
+
 int main(){
 
     vector<User> users;
@@ -31,12 +53,48 @@ int main(){
         cin>> choice;
 
         switch(choice) {
-            case 1:
-                cout<<"Registration selected."<<endl;
+            case 1: {
+                string username;
+                string password;
+
+                cout<<"\nEnter username: ";
+                cin>> username;
+                cout<<"Enter password: ";
+                cin>> password;
+
+                if(usernameExist(users, username)) {
+                   cout<<"\nUsername already exists!"<<endl;     
+                }else{
+                    
+                    User newUser;
+
+                    newUser.username = username;
+                    newUser.password =password;
+                    
+                    users.push_back(newUser);
+                    cout<<"\nRegistration successfull"<<endl;
+                }
                 break;
-            case 2:
-                cout<<"Login Successfull."<<endl;
+            }
+                
                 break;
+            case 2:{
+                string username;
+                string password;
+
+                cout<<"\nEnter username: ";
+                cin >> username;
+
+                cout<<"Enter password: ";
+                cin>>password;
+                if(loginUser(users, username, password)){
+                    cout<<"\nLogin Successfull"<<endl;
+                }else{
+
+                    cout<<"\nInvalid usrname or password!"<<endl;
+                }
+            }
+                
             case 3:
                 cout<<"View Users Selected."<<endl;
                 break;
