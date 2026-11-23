@@ -10,11 +10,11 @@ struct User {
     string password;
 };
 
-bool usernameExist(const vector<User> users, string username) {
+bool usernameExist(const vector<User>& users, string username) {
 
-    for(User user : users){
+    for(const User& user : users){
 
-        if(user,username == username){
+        if(user.username == username){
             return true;
         }
     }
@@ -22,7 +22,7 @@ bool usernameExist(const vector<User> users, string username) {
 }
 
 bool loginUser(const vector<User>& users, string username, string password) {
-    for (User user : users){
+    for (const User& user : users){
 
         if(user.username == username &&
             user.password == password) {
@@ -32,28 +32,7 @@ bool loginUser(const vector<User>& users, string username, string password) {
     return false;
 }
 
-int main(){
-
-    vector<User> users;
-
-    int choice;
-     
-    do{
-
-        cout<<"\n================================";
-        cout<<"\n           SECUREAUTH           ";
-        cout<<"\n================================";
-
-        cout<<"\n1. Register"<<endl;
-        cout<<"2. Login"<<endl;
-        cout<<"3. View Users"<<endl;
-        cout<<"4. Exit"<<endl;
-
-        cout<<"Enter your choice: ";
-        cin>> choice;
-
-        switch(choice) {
-            case 1: {
+void registerUser(vector<User>& users){
                 string username;
                 string password;
 
@@ -74,10 +53,35 @@ int main(){
                     users.push_back(newUser);
                     cout<<"\nRegistration successfull"<<endl;
                 }
+}
+
+int main(){
+
+    vector<User> users;
+
+
+    int choice;
+     
+    do{
+
+        cout<<"\n================================";
+        cout<<"\n           SECUREAUTH           ";
+        cout<<"\n================================";
+
+        cout<<"\n1. Register"<<endl;
+        cout<<"2. Login"<<endl;
+        cout<<"3. View Users"<<endl;
+        cout<<"4. Exit"<<endl;
+
+        cout<<"Enter your choice: ";
+        cin>> choice;
+
+        switch(choice) {
+            case 1: {
+                registerUser(users);
                 break;
             }
                 
-                break;
             case 2:{
                 string username;
                 string password;
@@ -92,7 +96,7 @@ int main(){
                 }else{
 
                     cout<<"\nInvalid usrname or password!"<<endl;
-                }
+                }break;
             }
                 
             case 3:
