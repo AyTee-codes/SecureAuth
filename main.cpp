@@ -55,6 +55,28 @@ void registerUser(vector<User>& users){
                 }
 }
 
+void viewUsers(const vector<User>& users){
+
+    cout << "\n================================";
+    cout << "\n        REGISTERED USERS";
+    cout << "\n================================\n";
+    if(users.empty()){
+
+        cout<<"No users registered yet!"<<endl;
+    }else{
+        
+        int count = 1;
+
+        for(const User& user : users) {
+
+            cout << count << ". "<< user.username <<endl;
+
+            count ++;
+        }
+        cout<<"\nTotal registered users: "<<users.size() <<endl;
+    }
+}
+
 int main(){
 
     vector<User> users;
@@ -100,7 +122,7 @@ int main(){
             }
                 
             case 3:
-                cout<<"View Users Selected."<<endl;
+                viewUsers(users);
                 break;
             case 4:
                 cout<<"Exiting SecureAuth..."<<endl;
